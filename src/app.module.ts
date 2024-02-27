@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { dataSourceOptions } from './db/typeorm.config';
+import { ProductsModule } from './products/products.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { dataSourceOptions } from './db/typeorm.config';
         config().database.autoLoadEntities?.toLowerCase() === 'true',
       ),
     }),
+    ProductsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
