@@ -5,7 +5,7 @@ export class ProductEntity {
   @PrimaryGeneratedColumn('uuid')
   product_id: number;
 
-  @Column()
+  @Column({ unique: true })
   name: string;
 
   @Column()
@@ -16,7 +16,4 @@ export class ProductEntity {
 
   @Column({ type: 'int' })
   stock: number;
-
-  @Column()
-  image_url: string;
 }
