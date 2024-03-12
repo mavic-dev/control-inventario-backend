@@ -14,6 +14,14 @@ export const config = registerAs('config', () => ({
     enabled: Boolean(process.env.SWAGGER_ENABLED?.toLowerCase() === 'true'),
     path: process.env.SWAGGER_PATH,
   },
+  s3: {
+    bucket: process.env.BUCKET,
+    region: process.env.REGION,
+    accessKeyId: process.env.ACCESS_KEY_ID,
+    secretAccessKey: process.env.SECRET_ACCESS_KEY,
+    contentDisposition: process.env.CONTENT_DISPOSITION || 'inline',
+    expireURL: Number(process.env.EXPIRE_URL_IMAGE) || 900,
+  },
   database: {
     host: process.env.DB_HOST,
     port: Number(process.env.DB_PORT),

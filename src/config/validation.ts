@@ -15,4 +15,10 @@ export const validationSchema = Joi.object({
   DB_LOGGING: Joi.boolean(),
   DB_SYNCHRONIZE: Joi.boolean(),
   DB_MIGRATIONS_RUN: Joi.boolean(),
+  BUCKET: Joi.string().required(),
+  REGION: Joi.string().required(),
+  ACCESS_KEY_ID: Joi.string().required(),
+  SECRET_ACCESS_KEY: Joi.string().required(),
+  CONTENT_DISPOSITION: Joi.string(),
+  EXPIRE_URL_IMAGE: Joi.number(),
 });
