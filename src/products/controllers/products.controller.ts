@@ -1,11 +1,13 @@
 import {
   Body,
   Controller,
+  Get,
+  Param,
   Post,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
-import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiConsumes, ApiParam, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ProductDTO } from '../dtos/products.dto';
 import { ProductsService } from '../services/products.service';
@@ -28,5 +30,25 @@ export class ProductsController {
     @UploadedFile() file: Express.Multer.File,
   ) {
     return this.productService.createProduct(payload, file);
+  }
+
+  @Get('image/:name')
+  @ApiParam({
+    name: 'name',
+    type: 'string',
+    required: true,
+  })
+  async getImageProduct(@Param('name') name: string) {
+    return this.productService.getImageProduct(name);
+  }
+
+  @Get('image/url/:name')
+  @ApiParam({
+    name: 'name',
+    type: 'string',
+    required: true,
+  })
+  async getImageUrlProduct(@Param('name') name: string) {
+    return this.productService.getImageUrlProduct(name);
   }
 }
