@@ -32,6 +32,16 @@ export class ProductsController {
     return this.productService.createProduct(payload, file);
   }
 
+  @Get(':name')
+  @ApiParam({
+    name: 'name',
+    type: 'string',
+    required: true,
+  })
+  async getProduct(@Param('name') name: string) {
+    return this.productService.getProduct(name);
+  }
+
   @Get('image/:name')
   @ApiParam({
     name: 'name',
