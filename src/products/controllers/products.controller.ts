@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
   UploadedFile,
@@ -40,6 +43,17 @@ export class ProductsController {
   })
   async getProduct(@Param('name') name: string) {
     return this.productService.getProduct(name);
+  }
+
+  @Delete(':name')
+  @ApiParam({
+    name: 'name',
+    type: 'string',
+    required: true,
+  })
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async deleteProduct(@Param('name') name: string) {
+    return this.productService.deleteProduct(name);
   }
 
   @Get('image/:name')

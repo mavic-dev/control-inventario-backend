@@ -5,6 +5,7 @@ import {
   Logger,
 } from '@nestjs/common';
 import {
+  DeleteObjectCommand,
   GetObjectCommand,
   PutObjectCommand,
   S3Client,
@@ -67,6 +68,19 @@ export class FilesService {
 
   async getFile(name: string) {
     const command = new GetObjectCommand({
+      Bucket: this.appConfig.s3.bucket,
+      Key: String(name),
+    });
+    try {
+      const data = await this.client.send(command);
+      return data;
+    } catch (e) {
+      this.logger.error(errorLog(e));
+      throw new InternalServerErrorException(e.message);
+    }
+  }
+  async deleteFile(name: string) {
+    const command = new DeleteObjectCommand({
       Bucket: this.appConfig.s3.bucket,
       Key: String(name),
     });
