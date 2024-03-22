@@ -36,8 +36,8 @@ export const getErrors = (error) => {
 };
 
 export const errorLog = (error) => {
-  return {
+  return JSON.stringify({
     ...error,
     message: error?.message,
-  };
+  });
 };
